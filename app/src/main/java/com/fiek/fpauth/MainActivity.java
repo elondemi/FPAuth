@@ -1,7 +1,5 @@
 package com.fiek.fpauth;
 
-import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
-import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +22,8 @@ import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE = 0000;
-    ImageView imageViewLogin;
+
+
 
     private Executor executor;
     private BiometricPrompt biometricPrompt;
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageViewLogin = findViewById(R.id.imageView);
 
         TextView msg_txt = findViewById(R.id.txt_msg);
         Button login_btn = findViewById(R.id.login_btn);
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         executor = ContextCompat.getMainExecutor(this);
-        biometricPrompt = new BiometricPrompt(MainActivity.this,
+        BiometricPrompt biometricPrompt = new BiometricPrompt(MainActivity.this,
                 executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode,
@@ -89,15 +86,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric login for my app")
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric login ")
                 .setSubtitle("Log in using your biometric credential")
                 .setNegativeButtonText("Use account password")
                 .build();
 
 
-        imageViewLogin.setOnClickListener(view -> {
-            biometricPrompt.authenticate(promptInfo);
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+                    public void onClick(View view){
+                    biometricPrompt.authenticate(promptInfo);
+            }
         });
     }
 
