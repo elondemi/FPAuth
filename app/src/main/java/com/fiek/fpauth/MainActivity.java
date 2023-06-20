@@ -10,11 +10,14 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.Executor;
@@ -34,23 +37,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         imageViewLogin = findViewById(R.id.imageView);
 
+        TextView msg_txt = findViewById(R.id.txt_msg);
+        Button login_btn = findViewById(R.id.login_btn);
+
+
         BiometricManager biometricManager = BiometricManager.from(this);
-        switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
+        switch (biometricManager.canAuthenticate()) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-                Log.d("MY_APP_TAG", "App can authenticate using biometrics.");
+                msg_txt.setText("You can use the fingerprint sensor to login");
+                msg_txt.setTextColor(Color.parseColor("#fafafa"));
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(this, "FingerPrint sensor Not exist", Toast.LENGTH_SHORT).show();
+                msg_txt.setText("The device doesn't have a fingerprint sensor");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toast.makeText(this, "Sensor not available or busy", Toast.LENGTH_LONG).show();
-                break;
+                msg_txt.setText("The biometric sensor is currnetly unavailable");
+                login_btn.setVisibility(View.GONE);
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                // Prompts the user to create credentials that your app accepts.
-                final Intent enrollIntent = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
-                enrollIntent.putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                        BIOMETRIC_STRONG | DEVICE_CREDENTIAL);
-                startActivityForResult(enrollIntent, REQUEST_CODE);
+                msg_txt.setText("Your device doesn't jave any fingerprint saved, please check you security settings");
+                login_btn.setVisibility(View.GONE);
                 break;
         }
 
