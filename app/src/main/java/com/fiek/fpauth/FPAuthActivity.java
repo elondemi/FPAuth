@@ -1,25 +1,21 @@
 package com.fiek.fpauth;
 
 
-
-
 import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
 import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
-
-import android.content.Intent;
-import android.os.Bundle;
-
-import android.provider.Settings;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 
@@ -36,7 +32,6 @@ public class FPAuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView msg_txt = findViewById(R.id.txt_msg);
         Button login_btn = findViewById(R.id.login_btn);
 
 

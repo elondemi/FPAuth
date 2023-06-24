@@ -6,6 +6,11 @@ android {
     namespace 'com.fiek.fpauth'
     compileSdk 33
 
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.fiek.fpauth"
         minSdk 24
