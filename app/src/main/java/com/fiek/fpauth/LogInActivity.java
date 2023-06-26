@@ -29,7 +29,7 @@ public class LogInActivity extends AppCompatActivity {
                     Boolean checkCredentials = databaseHelper.checkEmailPassword(email, password);
                     if(checkCredentials == true){
                         Toast.makeText(LogInActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                        Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
+                        Intent intent  = new Intent(getApplicationContext(), FPAuthActivity.class);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LogInActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
@@ -40,7 +40,7 @@ public class LogInActivity extends AppCompatActivity {
         binding.signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LogInActivity.this, FPAuthActivity.class);
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
