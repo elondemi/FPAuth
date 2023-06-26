@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/background"
+    android:background="@drawable/backgorund"
     tools:context=".FPAuthActivity">
 
     <TextView
@@ -31,12 +31,7 @@
         android:layout_marginVertical="20dp"
         app:srcCompat="@drawable/baseline_fingerprint_24" />
 
-    <TextView
-        android:id="@+id/txt_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ff0000"
-        />
+
 
     <Button
         android:id="@+id/login_btn"
