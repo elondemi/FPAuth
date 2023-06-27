@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +28,6 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = binding.loginUsername.getText().toString();
                 String password = binding.loginPassword.getText().toString();
-                TextView tv = (TextView)findViewById(R.id.textView);
 
 
                 if(username.equals("")||password.equals(""))
@@ -51,7 +49,6 @@ public class LogInActivity extends AppCompatActivity {
                         editor.apply();
 
                         Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
-//                        intent.putExtra("name", message);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LogInActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

@@ -84,17 +84,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         myDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
-    public String getName()  {
-        String query = "SELECT " + KEY_USERNAME + " FROM " + TABLE;
-        SQLiteDatabase MyDatabase = this.getReadableDatabase();
-        Cursor cursor = MyDatabase.rawQuery(query, null);
-        String data = null;
-        if(cursor.moveToFirst()){
-            do{
-                data = cursor.getString(1);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return data;
-    }
+
 }
